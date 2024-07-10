@@ -1,10 +1,6 @@
 ﻿using Journey.Communication.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using Journey.Exception.ExceptionsBase;
+using Journey.Exception;
 
 namespace Journey.Application.UseCases.Trips.Register
 {
@@ -19,17 +15,17 @@ namespace Journey.Application.UseCases.Trips.Register
         {
             if (string.IsNullOrWhiteSpace(request.Name))
             {
-                throw new ArgumentException("Name cannot be empty");
+                throw new JourneyException(ResourceErrorMessages.NAME_EMPTY);
             }
 
             if (request.StartDate.Date < DateTime.UtcNow.Date)
             {
-                throw new ArgumentException("Trip cannot be registered for a past date");
+                throw new JourneyException(ResourceErrorMessages.TRIP_DATE_MUST_BE_LATER_THAN_TODAY);
             }
 
             if (request.EndDate.Date < request.StartDate.Date)
             {
-                throw new ArgumentException("Trip end date must be equal to or later than the start date");
+                throw new JourneyException(ResourceErrorMessages.TRIP_END_DATE_MUST_BE_LATER_THAN_START_DATE);
             }
         }
     }
