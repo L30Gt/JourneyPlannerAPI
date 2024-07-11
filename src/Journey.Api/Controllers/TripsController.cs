@@ -18,21 +18,10 @@ namespace Journey.Api.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         public IActionResult Register([FromBody] RequestRegisterTripJson request)
         {
-            try
-            {
-                var useCase = new RegisterTripUseCase();
-                var response = useCase.Execute(request);
+            var useCase = new RegisterTripUseCase();
+            var response = useCase.Execute(request);
 
-                return Created(string.Empty, response);
-            }
-            catch (JourneyException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch 
-            { 
-                return StatusCode(StatusCodes.Status500InternalServerError, ResourceErrorMessages.UNKNOWN_ERROR);
-            }
+            return Created(string.Empty, response);
         }
 
         [HttpGet]
@@ -51,21 +40,10 @@ namespace Journey.Api.Controllers
         [Route("{id}")]
         public IActionResult GetById([FromRoute]Guid id)
         {
-            try
-            {
-                var useCase = new GetTripByIdUseCase();
-                var response = useCase.Execute(id);
+            var useCase = new GetTripByIdUseCase();
+            var response = useCase.Execute(id);
 
-                return Ok(response);
-            }
-            catch (JourneyException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ResourceErrorMessages.UNKNOWN_ERROR);
-            }
+            return Ok(response);
         }
     }
 }
