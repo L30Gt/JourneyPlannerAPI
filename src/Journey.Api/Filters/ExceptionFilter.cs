@@ -20,7 +20,7 @@ namespace Journey.Api.Filters
             else
             {
                 context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                context.Result = new ObjectResult(context.Exception.Message);
+                context.Result = new ObjectResult(ResourceErrorMessages.UNKNOWN_ERROR);
             }
         }
     }
