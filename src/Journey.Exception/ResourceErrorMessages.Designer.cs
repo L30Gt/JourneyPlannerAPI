@@ -61,6 +61,24 @@ namespace Journey.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activity not found.
+        /// </summary>
+        public static string ACTIVITY_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("ACTIVITY_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date you selected for the activity is not within your travel period.
+        /// </summary>
+        public static string DATE_NOT_WHITHIN_TRAVEL_PERIOD {
+            get {
+                return ResourceManager.GetString("DATE_NOT_WHITHIN_TRAVEL_PERIOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name cannot be empty.
         /// </summary>
         public static string NAME_EMPTY {
@@ -84,6 +102,15 @@ namespace Journey.Exception {
         public static string TRIP_END_DATE_MUST_BE_LATER_THAN_START_DATE {
             get {
                 return ResourceManager.GetString("TRIP_END_DATE_MUST_BE_LATER_THAN_START_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trip not found.
+        /// </summary>
+        public static string TRIP_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("TRIP_NOT_FOUND", resourceCulture);
             }
         }
         

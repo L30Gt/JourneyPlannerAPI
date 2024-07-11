@@ -1,4 +1,5 @@
 ﻿using Journey.Application.UseCases.Trips.GetAll;
+using Journey.Application.UseCases.Trips.GetById;
 using Journey.Application.UseCases.Trips.Register;
 using Journey.Communication.Requests;
 using Journey.Exception;
@@ -38,6 +39,27 @@ namespace Journey.Api.Controllers
             var result = useCase.Execute();
 
             return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetById([FromRoute]Guid id)
+        {
+            try
+            {
+                var useCase = new GetTripByIdUseCase();
+                var response = useCase.Execute(id);
+
+                return Ok(response);
+            }
+            catch (JourneyException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ResourceErrorMessages.UNKNOWN_ERROR);
+            }
         }
     }
 }
